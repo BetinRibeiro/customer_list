@@ -1,0 +1,9 @@
+# -*- coding: utf-8 -*-
+
+@auth.requires_login()
+def list_people():
+    db.person.id.writable = False
+    db.person.id.readable  = False
+    db.person.fields = [db.person.name_person, db.person.whatzapp, db.person.date_of_birth,  db.person.profession, db.person.open_to_business]
+    grid = SQLFORM.smartgrid(db.person, paginate=20, csv=False)
+    return locals()

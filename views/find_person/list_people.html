@@ -1,0 +1,21 @@
+{{extend 'layout.html'}}
+
+        <div class="row">
+          <div class="col-md-3">
+            <h3>Navegação</h3>
+            <ul class="list-group">
+              <li class="list-group-item">
+                <a class="btn btn-block btn-primary" href="{{=URL('find_person','list_people')}}">{{=T("Find People")}}</a>
+              </li>
+              <li class="list-group-item">
+                <a class="btn btn-block btn-primary" href="{{=URL('work_activity','list_activity')}}">{{=T("Work Activity")}}</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-9 text-left">
+            <h3>{{=T("Find People")}}
+              <br>
+            </h3>
+           {{=grid}}
+          </div>
+        </div>

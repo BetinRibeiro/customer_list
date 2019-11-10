@@ -1,0 +1,117 @@
+timestamp: 2019-11-09T15:20:54.583512
+CREATE TABLE "auth_user"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "first_name" CHAR(128),
+    "last_name" CHAR(128),
+    "email" CHAR(512),
+    "password" CHAR(512),
+    "registration_key" CHAR(512),
+    "reset_password_key" CHAR(512),
+    "registration_id" CHAR(512)
+);
+success!
+timestamp: 2019-11-09T15:20:54.656602
+CREATE TABLE "auth_group"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "role" CHAR(512),
+    "description" TEXT
+);
+success!
+timestamp: 2019-11-09T15:20:54.715513
+CREATE TABLE "auth_membership"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "user_id" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "group_id" INTEGER REFERENCES "auth_group" ("id") ON DELETE CASCADE  
+);
+success!
+timestamp: 2019-11-09T15:20:54.763615
+CREATE TABLE "auth_permission"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "group_id" INTEGER REFERENCES "auth_group" ("id") ON DELETE CASCADE  ,
+    "name" CHAR(512),
+    "table_name" CHAR(512),
+    "record_id" INTEGER
+);
+success!
+timestamp: 2019-11-09T15:20:54.819721
+CREATE TABLE "auth_event"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "time_stamp" TIMESTAMP,
+    "client_ip" CHAR(512),
+    "user_id" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "origin" CHAR(512),
+    "description" TEXT
+);
+success!
+timestamp: 2019-11-09T15:20:54.864679
+CREATE TABLE "auth_cas"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "user_id" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "created_on" TIMESTAMP,
+    "service" CHAR(512),
+    "ticket" CHAR(512),
+    "renew" CHAR(1)
+);
+success!
+timestamp: 2019-11-09T15:34:13.642076
+CREATE TABLE "person"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "name_person" CHAR(512) NOT NULL,
+    "whatzapp" CHAR(512) NOT NULL,
+    "facebook" CHAR(512) NOT NULL,
+    "instagram" CHAR(512) NOT NULL,
+    "genre" CHAR(512) NOT NULL,
+    "address" CHAR(512) NOT NULL,
+    "date_of_birth" DATE,
+    "marital_status" CHAR(512) NOT NULL,
+    "credit_card" CHAR(1) NOT NULL,
+    "profession" CHAR(512) NOT NULL DEFAULT 'Vendedor',
+    "average_wage" DOUBLE NOT NULL DEFAULT 1000.0,
+    "buying_motivator" TEXT,
+    "aches" TEXT,
+    "open_to_business" CHAR(1),
+    "amount_of_activities" INTEGER NOT NULL DEFAULT 0,
+    "note" TEXT NOT NULL,
+    "is_active" CHAR(1),
+    "created_on" TIMESTAMP,
+    "created_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "modified_on" TIMESTAMP,
+    "modified_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  
+);
+success!
+success!
+success!
+success!
+success!
+timestamp: 2019-11-10T02:33:08.199548
+CREATE TABLE "contact_and_invite"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "description" CHAR(512) NOT NULL,
+    "person" INTEGER REFERENCES "person" ("id") ON DELETE CASCADE  NOT NULL ,
+    "activity_date" DATE,
+    "reschedule" CHAR(1) NOT NULL,
+    "note" CHAR(512) NOT NULL,
+    "is_active" CHAR(1),
+    "created_on" TIMESTAMP,
+    "created_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "modified_on" TIMESTAMP,
+    "modified_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  
+);
+success!
+success!
+timestamp: 2019-11-10T03:11:22.306213
+CREATE TABLE "work_activity"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "description" CHAR(512) NOT NULL,
+    "person" INTEGER REFERENCES "person" ("id") ON DELETE CASCADE  NOT NULL ,
+    "activity_date" DATE,
+    "value_activity" DOUBLE NOT NULL DEFAULT 0.0,
+    "reschedule" CHAR(1) NOT NULL,
+    "note" TEXT NOT NULL,
+    "is_active" CHAR(1),
+    "created_on" TIMESTAMP,
+    "created_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "modified_on" TIMESTAMP,
+    "modified_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  
+);
+success!

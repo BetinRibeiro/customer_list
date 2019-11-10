@@ -1,0 +1,3 @@
+{{extend 'layout.html'}}
+<h1>Este é o template work_activity/list_activity.html</h1>
+{{=BEAUTIFY(response._vars)}}

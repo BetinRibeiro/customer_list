@@ -1,0 +1,29 @@
+{{extend 'layout.html'}}
+        <div class="row">
+          <div class="col-md-3">
+            <h3>Navegação</h3>
+            <ul class="list-group">
+              <li class="list-group-item">
+                <a class="btn btn-block btn-primary" href="{{=URL('find_person','list_people')}}">{{=T("Find People")}}</a>
+              </li>
+              <li class="list-group-item">
+                <a class="btn btn-block btn-primary" href="{{=URL('contact_and_invite','list_contact')}}">{{=T("Contact and Invite")}}</a>
+              </li>
+              <li class="list-group-item">
+                <a class="btn btn-block btn-primary" href="#">{{=T("Present Product or Business")}}</a>
+              </li>
+              <li class="list-group-item">
+                <a class="btn btn-block btn-primary" href="#">{{=T("Side Dishes")}}</a>
+              </li>
+              <li class="list-group-item">
+                <a class="btn btn-block btn-primary" href="#">{{=T("Sale Close")}}</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-9 text-left">
+            <h3>{{=T("Contact and invites")}}
+              <br>
+            </h3>
+           {{=grid}}
+          </div>
+        </div>
